@@ -19,6 +19,12 @@ public class GameState : MonoSingleton<GameState> {
         }
     }
 
+    public bool IsStarted {
+        get {
+            return _isStarted;
+        }
+    }
+
     void Start() {
         StartGame();
     }
