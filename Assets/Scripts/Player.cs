@@ -10,8 +10,10 @@ public class Player : MonoBehaviour {
     int _maxHealth = 0;
     bool _isDead = false;
 
-    public float MinYAngle = -5;
-    public float MaxYAngle = 5;
+    public float MinYAngle = -10;
+    public float MaxYAngle = 10;
+	public float MinXAngle = -20;
+	public float MaxXAngle = 20;
     
     Projectile _currentProjectile = null;
 
@@ -26,9 +28,12 @@ public class Player : MonoBehaviour {
                 _currentProjectile = Instantiate(ProjectilePrefab, ProjectileSpawnPoint.position, Quaternion.identity).GetComponent<Projectile>();
             } else {
                 if (Input.GetMouseButtonDown(0) && _currentProjectile.CanShoot) {
-                    float yAngle = 0;
+
+                    float yAngle = Input.mousePosition.x;
+					float xAngle = Input.mousePosition.y;
                     yAngle = yAngle.Map(0, Screen.width, MinYAngle, MaxYAngle);
-                    _currentProjectile.transform.Rotate(0, yAngle, 0);
+					xAngle = xAngle.Map(0, Screen.height, MinXAngle, MaxXAngle);
+                    _currentProjectile.transform.Rotate(-xAngle, yAngle, 0);
                     _currentProjectile.Fire();
                     _currentProjectile = null;
                 }
@@ -37,6 +42,7 @@ public class Player : MonoBehaviour {
     }
 
     void Die() {
+		_isDead = true;
         EventManager.Fire<Event_Game_Over>(new Event_Game_Over());
     }
 

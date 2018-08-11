@@ -430,8 +430,10 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 1978185904925860, guid: a5982b38f902a854588161702ebfcbbb,
     type: 2}
   ProjectileSpawnPoint: {fileID: 659851704}
-  MinYAngle: -5
-  MaxYAngle: 5
+  MinYAngle: -45
+  MaxYAngle: 45
+  MinXAngle: -30
+  MaxXAngle: 30
 --- !u!4 &260911395
 Transform:
   m_ObjectHideFlags: 0
@@ -588,7 +590,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 659851703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.204, y: -0.104, z: 0.68}
+  m_LocalPosition: {x: 0.204, y: -0.212, z: 1.355}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 260911395}

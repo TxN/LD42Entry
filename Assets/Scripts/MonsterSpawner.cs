@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using EventSys;
-using System.Linq;
 
 public class MonsterSpawner : MonoBehaviour {
     public List<Transform> SpawnPoints = new List<Transform>();
@@ -26,7 +24,7 @@ public class MonsterSpawner : MonoBehaviour {
 
     void Update() {
         var gm = GameState.Instance;
-        if (!gm.IsPause) {
+        if (!gm.IsPause && _enabled) {
             _timeToSpawn -= Time.deltaTime;
             if (_timeToSpawn <= 0) {
                 Spawn();
