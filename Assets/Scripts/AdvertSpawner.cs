@@ -1,0 +1,40 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AdvertSpawner : MonoSingleton<AdvertSpawner> {
+
+    public List<GameObject> AdvertsPrefabs;
+
+    int CurrentAdvertPrefab = 1; 
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+    public void Spawn() { 
+        int advertToSpawnIndex = 0;
+
+        if ( CurrentAdvertPrefab < AdvertsPrefabs.Count ) {
+            advertToSpawnIndex = CurrentAdvertPrefab - 1; 
+            CurrentAdvertPrefab++;
+        } else {
+            advertToSpawnIndex = Random.Range(0, AdvertsPrefabs.Count - 1); 
+        }
+
+        GameObject advert = AdvertsPrefabs[advertToSpawnIndex];
+        RectTransform canvas = this.gameObject.GetComponent<Canvas>().GetComponent<RectTransform>();
+        Transform canvasParent = this.gameObject.GetComponent<Canvas>().GetComponent<Transform>();
+        Vector2 advertPos = new Vector2(
+            Random.Range(0f, canvas.rect.width - advert.GetComponent<RectTransform>().rect.width),
+            Random.Range(0f, canvas.rect.height - advert.GetComponent<RectTransform>().rect.height)
+        ); 
+        Instantiate(advert, advertPos, Quaternion.identity, canvasParent); 
+    }
+}
