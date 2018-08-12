@@ -10,7 +10,7 @@ public class AdvertSpawner : MonoSingleton<AdvertSpawner> {
     public AnimationCurve  AdvertSpawnTimeLowCurve  = new AnimationCurve();
     public AnimationCurve  AdvertSpawnTimeHighCurve  = new AnimationCurve();
 
-    float _nextSpawnTime = 5;
+    float _nextSpawnTime = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -43,10 +43,19 @@ public class AdvertSpawner : MonoSingleton<AdvertSpawner> {
         GameObject advert = AdvertsPrefabs[advertToSpawnIndex];
         RectTransform canvas = this.gameObject.GetComponent<Canvas>().GetComponent<RectTransform>();
         Transform canvasParent = this.gameObject.GetComponent<Canvas>().GetComponent<Transform>();
+        //Vector2 advertPos = new Vector2(
+        //    Random.Range(0f, canvas.rect.width - advert.GetComponent<RectTransform>().rect.width),
+        //    Random.Range(0f, canvas.rect.height - advert.GetComponent<RectTransform>().rect.height)
+        //); 
         Vector2 advertPos = new Vector2(
-            Random.Range(0f, canvas.rect.width - advert.GetComponent<RectTransform>().rect.width),
-            Random.Range(0f, canvas.rect.height - advert.GetComponent<RectTransform>().rect.height)
+            Random.Range(0f, canvas.sizeDelta.x - advert.GetComponent<RectTransform>().sizeDelta.x),
+            Random.Range(0f, canvas.sizeDelta.y - advert.GetComponent<RectTransform>().sizeDelta.y)
         ); 
-        Instantiate(advert, advertPos, Quaternion.identity, canvasParent); 
+        //Instantiate(advert, advertPos, Quaternion.identity, canvasParent); 
+        var adv = Instantiate(advert);
+        adv.GetComponent<RectTransform>().SetParent(canvasParent);
+        adv.GetComponent<RectTransform>().anchoredPosition = advertPos;
+        adv.transform.localScale = Vector3.one;
+        
     }
 }
