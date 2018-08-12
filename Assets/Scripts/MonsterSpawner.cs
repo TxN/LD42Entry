@@ -9,6 +9,8 @@ public class MonsterSpawner : MonoBehaviour {
     public AnimationCurve  SpawnCountCurve = new AnimationCurve();
     public Animator DoorAnimator = null;
 
+    AudioSource _doorSound = null;
+
     bool  _enabled     = false;
     float _timeToSpawn = 3f;
     int   _spawnCount  = 1;
@@ -17,6 +19,7 @@ public class MonsterSpawner : MonoBehaviour {
     void Start() {
         EventManager.Subscribe<Event_Game_Started>(this, OnGameStarted);
         EventManager.Subscribe<Event_Game_Over>(this, OnGameOver);
+        _doorSound = GetComponent<AudioSource>();
     }
 
     void OnDestroy() {
@@ -61,10 +64,12 @@ public class MonsterSpawner : MonoBehaviour {
     void DoorClose() {
         _doorOpen = false;
         DoorAnimator.SetBool("Open", false);
+        _doorSound.Play();
     }
     void DoorOpen() {
         _doorOpen = true;
         DoorAnimator.SetBool("Open", true);
+        _doorSound.Play();
     }
 
     void CreateEnemy(Vector3 position) {

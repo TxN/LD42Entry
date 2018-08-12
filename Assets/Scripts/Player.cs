@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
     public GameObject ProjectilePrefab     = null;
     public Transform  ProjectileSpawnPoint = null;
     public Transform  HandImg = null;
+    public AudioSource ShootSound = null;
     int _maxHealth = 0;
     bool _isDead = false;
 
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour {
                     _currentProjectile.transform.Rotate(-xAngle, yAngle, 0);
                     _currentProjectile.transform.parent = null;
                     _currentProjectile.Fire();
+                    ShootSound.Play();
                     _currentProjectile = null;
                 }
             }
