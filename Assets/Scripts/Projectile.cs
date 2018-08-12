@@ -34,7 +34,6 @@ public class Projectile : MonoBehaviour {
     void OnTriggerEnter(Collider other) {
         var enemy = other.GetComponent<Enemy>();
         if (enemy) {
-            Debug.Log("Enemy collide");
             enemy.DoDamage(Damage);
             KillProjectile();
         }
