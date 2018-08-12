@@ -14,10 +14,11 @@ public class Projectile : MonoBehaviour {
     bool     _isReady  = false;
     bool     _isMoving = false;
     Vector3  _initScale = Vector3.zero;
+    
 
     void Start() {
         _initScale = transform.localScale;
-
+       
         _seq = TweenHelper.ReplaceSequence(_seq);
         transform.localScale = Vector3.zero;
         _seq.Append(transform.DOScale(_initScale,0.3f));
@@ -53,6 +54,12 @@ public class Projectile : MonoBehaviour {
     public void KillProjectile() {
         _isMoving = false;
         Explosion.transform.parent = null;
+        var partsTr = GetComponentInChildren<ParticleSystem>();
+        if (partsTr) {
+            partsTr.gameObject.AddComponent<TimedDestroy>().Activate(1.5f);
+            partsTr.gameObject.transform.parent = null;
+        }
+
         var destr = Explosion.AddComponent<TimedDestroy>();
         destr.Activate(1.5f);
         Explosion.gameObject.SetActive(true);
