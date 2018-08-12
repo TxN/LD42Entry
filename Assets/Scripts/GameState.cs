@@ -7,6 +7,7 @@ public class GameState : MonoSingleton<GameState> {
     public Player         Player         = null;
     public MonsterSpawner MonsterSpawner = null;
     public BriefingWindow BriefingWindow = null;
+    public EndWindow      EndWindow      = null;
     public FadeScreen     Fader          = null;
 
 
