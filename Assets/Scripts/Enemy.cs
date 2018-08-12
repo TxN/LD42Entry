@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour {
     public int            Health       = 100;
     public int            AttackDamage = 10;
     public float          MoveSpeed    = 1f;
+    public GameObject     Explosion    = null;
     public Vector3 MoveDirection = new Vector3(0, 0, 1);
 
     const float DESTROY_TIME = 1f;
@@ -48,6 +49,8 @@ public class Enemy : MonoBehaviour {
 
     void Die() {
         _isDead = true;
+        SR.enabled = false;
+        Explosion.SetActive(true);
         var timedDestroy = gameObject.AddComponent<TimedDestroy>();
         timedDestroy.Activate(DESTROY_TIME);
         EventManager.Fire<Event_Enemy_Killed>(new Event_Enemy_Killed());

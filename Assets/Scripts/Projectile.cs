@@ -5,9 +5,10 @@ using DG.Tweening;
 
 
 public class Projectile : MonoBehaviour {
-    public int     Damage        = 10;
-    public float   Speed         = 10f;
-    public Vector3 MoveDirection = new Vector3(0, 0, 1);
+    public int        Damage        = 10;
+    public float      Speed         = 10f;
+    public Vector3    MoveDirection = new Vector3(0, 0, 1);
+    public GameObject Explosion     = null;
 
     Sequence _seq      = null;
     bool     _isReady  = false;
@@ -52,6 +53,10 @@ public class Projectile : MonoBehaviour {
 
     public void KillProjectile() {
         _isMoving = false;
+        Explosion.transform.parent = null;
+        var destr = Explosion.AddComponent<TimedDestroy>();
+        destr.Activate(1.5f);
+        Explosion.gameObject.SetActive(true);
         Destroy(this.gameObject);
     }
 

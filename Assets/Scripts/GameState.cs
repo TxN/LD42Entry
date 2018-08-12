@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EventSys;
 
 public class GameState : MonoSingleton<GameState> {
-    public Player         Player = null;
+    public Player         Player         = null;
     public MonsterSpawner MonsterSpawner = null;
-    
+    public BriefingWindow BriefingWindow = null;
 
 
     public bool IsPause = true;
 
     float _gameTime = 0;
     bool _isStarted = false;
-
+    
     public float GameTime {
         get {
             return _gameTime;
@@ -26,7 +27,7 @@ public class GameState : MonoSingleton<GameState> {
     }
 
     void Start() {
-        StartGame();
+        BriefingWindow.gameObject.SetActive(true);
     }
 
     public void StartGame() {
@@ -34,7 +35,9 @@ public class GameState : MonoSingleton<GameState> {
             return;
         }
         _isStarted = true;
+        IsPause = false;
         _gameTime = 0f;
+        EventManager.Fire<Event_Game_Started>(new Event_Game_Started());
     }
 
     void Update() {
