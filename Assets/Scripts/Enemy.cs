@@ -45,6 +45,7 @@ public class Enemy : MonoBehaviour {
 
     public void StopMoving() {
         _isMoving = false;
+        Die();
     }
 
     void Die() {

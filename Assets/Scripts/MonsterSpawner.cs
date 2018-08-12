@@ -7,10 +7,12 @@ public class MonsterSpawner : MonoBehaviour {
     public List<Enemy>     EnemyFabs   = new List<Enemy>();
     public AnimationCurve  SpawnTimeCurve  = new AnimationCurve();
     public AnimationCurve  SpawnCountCurve = new AnimationCurve();
+    public Animator DoorAnimator = null;
 
     bool  _enabled     = false;
     float _timeToSpawn = 3f;
     int   _spawnCount  = 1;
+    bool  _doorOpen    = false;
 
     void Start() {
         EventManager.Subscribe<Event_Game_Started>(this, OnGameStarted);
@@ -26,6 +28,9 @@ public class MonsterSpawner : MonoBehaviour {
         var gm = GameState.Instance;
         if (!gm.IsPause && _enabled) {
             _timeToSpawn -= Time.deltaTime;
+            if (_timeToSpawn < 0.8f && !_doorOpen) {
+                DoorOpen();
+            }
             if (_timeToSpawn <= 0) {
                 Spawn();
             }
@@ -49,7 +54,17 @@ public class MonsterSpawner : MonoBehaviour {
 
         _timeToSpawn = SpawnTimeCurve.Evaluate(time);
         _spawnCount = Random.Range(1, Mathf.CeilToInt(SpawnCountCurve.Evaluate(time)));
+        DoorClose();
 
+    }
+
+    void DoorClose() {
+        _doorOpen = false;
+        DoorAnimator.SetBool("Open", false);
+    }
+    void DoorOpen() {
+        _doorOpen = true;
+        DoorAnimator.SetBool("Open", true);
     }
 
     void CreateEnemy(Vector3 position) {
