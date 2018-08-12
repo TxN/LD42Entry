@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4220623679274084}
   - component: {fileID: 212849999614461804}
+  - component: {fileID: 114419200575078942}
   m_Layer: 0
   m_Name: Grahics
   m_TagString: Untagged
@@ -296,6 +297,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114419200575078942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013578652346478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa13e7c40974d44284c02d08583192b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: 0e5dbdb85abc25f4386e1096335de721, type: 3}
+  - {fileID: 21300000, guid: 7b0b595e1e114994787504ab7f194e34, type: 3}
+  - {fileID: 21300000, guid: 5612e605cb6a9e840b6eb6e6007897c5, type: 3}
+  - {fileID: 21300000, guid: 9c924b3db977bda40986735d02c265b3, type: 3}
+  Delays:
+  - 0.15
+  - 0.15
+  - 0.15
+  - 0.15
 --- !u!114 &114786117882419130
 MonoBehaviour:
   m_ObjectHideFlags: 1
