@@ -4,11 +4,17 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour {
 	public Button StartButton = null;
-	public Toggle SoundToggle = null;
+    public Button SoundButton = null;
+    public Sprite SoundOnSprite = null;
+    public Sprite SoundOffSprite = null;
+
+    bool _soundOn = false;
 
 	void Start () {
-		SoundToggle.isOn = AudioListener.volume > 0.05f;
+        _soundOn = AudioListener.volume > 0.05f;
+        SoundButton.image.sprite = _soundOn ? SoundOnSprite : SoundOffSprite;
 		StartButton.onClick.AddListener(LoadLevel);
+        SoundButton.onClick.AddListener(OnClickSoundToggle);
 	}
 
 	void LoadLevel() {
@@ -16,7 +22,9 @@ public class StartMenu : MonoBehaviour {
 	}
 
 	public void OnClickSoundToggle() {
-		AudioListener.volume = SoundToggle.isOn ? 1f : 0f;
+        _soundOn = !_soundOn;
+        SoundButton.image.sprite = _soundOn ? SoundOnSprite : SoundOffSprite;
+		AudioListener.volume = _soundOn ? 1f : 0f;
 	}
 	
 }
