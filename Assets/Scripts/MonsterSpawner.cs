@@ -69,7 +69,7 @@ public class MonsterSpawner : MonoBehaviour {
 
     void CreateEnemy(Vector3 position) {
         var enemy = Instantiate(EnemyFabs[Random.Range(0, EnemyFabs.Count)], position, Quaternion.identity);
-
+        enemy.transform.position = enemy.transform.position + new Vector3(0, enemy.ZOffset, 0);
     }
 
     void OnGameStarted(Event_Game_Started e) {

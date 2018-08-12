@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour {
     public float          MoveSpeed    = 1f;
     public GameObject     Explosion    = null;
     public Vector3 MoveDirection = new Vector3(0, 0, 1);
+    public float ZOffset = 0;
 
     const float DESTROY_TIME = 1f;
     bool _isDead     = false;

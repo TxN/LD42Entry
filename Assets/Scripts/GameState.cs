@@ -7,6 +7,7 @@ public class GameState : MonoSingleton<GameState> {
     public Player         Player         = null;
     public MonsterSpawner MonsterSpawner = null;
     public BriefingWindow BriefingWindow = null;
+    public FadeScreen     Fader          = null;
 
 
     public bool IsPause = true;
@@ -28,6 +29,11 @@ public class GameState : MonoSingleton<GameState> {
 
     void Start() {
         BriefingWindow.gameObject.SetActive(true);
+        EventManager.Subscribe<Event_Game_Over>(this, OnGameOver);
+    }
+
+    void OnDestroy() {
+        EventManager.Unsubscribe<Event_Game_Over>(OnGameOver);
     }
 
     public void StartGame() {
@@ -44,6 +50,10 @@ public class GameState : MonoSingleton<GameState> {
         if (_isStarted && !IsPause) {
             _gameTime += Time.deltaTime;
         }
+    }
+
+    void OnGameOver(Event_Game_Over e) {
+        Fader.FadeBlack(1);
     }
 
 
