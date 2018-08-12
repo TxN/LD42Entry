@@ -6,7 +6,11 @@ public class AdvertSpawner : MonoSingleton<AdvertSpawner> {
 
     public List<GameObject> AdvertsPrefabs;
 
-    int CurrentAdvertPrefab = 1; 
+    int CurrentAdvertPrefab = 1;
+    public AnimationCurve  AdvertSpawnTimeLowCurve  = new AnimationCurve();
+    public AnimationCurve  AdvertSpawnTimeHighCurve  = new AnimationCurve();
+
+    float _nextSpawnTime = 5;
 
 	// Use this for initialization
 	void Start () {
@@ -15,8 +19,16 @@ public class AdvertSpawner : MonoSingleton<AdvertSpawner> {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        UpdateTime();
 	}
+
+    void UpdateTime() {
+        var time = GameState.Instance.GameTime;
+        if ( time > _nextSpawnTime ) {
+            Spawn(); 
+            _nextSpawnTime = Random.Range(AdvertSpawnTimeLowCurve.Evaluate(time), AdvertSpawnTimeHighCurve.Evaluate(time));
+        }
+    }
 
     public void Spawn() { 
         int advertToSpawnIndex = 0;

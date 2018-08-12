@@ -11,8 +11,7 @@ public class Advert : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        CloseButton.onClick.AddListener(Close);
-		
+        CloseButton.onClick.AddListener(Close); 
 	}
 	
 	// Update is called once per frame
@@ -27,8 +26,7 @@ public class Advert : MonoBehaviour {
         //SOUND STUFF WILL BE HERE 
 
         if ( Random.Range(0, 1) > NewWindowProbability ) {
-            AdvertSpawner.Instance.Spawn();
-            
+            AdvertSpawner.Instance.Spawn(); 
         } 
     }
 }
