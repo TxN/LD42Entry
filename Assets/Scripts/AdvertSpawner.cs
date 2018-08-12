@@ -10,12 +10,7 @@ public class AdvertSpawner : MonoSingleton<AdvertSpawner> {
     public AnimationCurve  AdvertSpawnTimeLowCurve  = new AnimationCurve();
     public AnimationCurve  AdvertSpawnTimeHighCurve  = new AnimationCurve();
 
-    float _nextSpawnTime = 10;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    float _nextSpawnTime = 20;
 	
 	// Update is called once per frame
 	void Update () {
