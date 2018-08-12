@@ -6,15 +6,25 @@ public class AdvertSpawner : MonoSingleton<AdvertSpawner> {
 
     public List<GameObject> AdvertsPrefabs;
 
+    public List<AudioClip> WindowSounds = new List<AudioClip>();
+
     int CurrentAdvertPrefab = 1;
     public AnimationCurve  AdvertSpawnTimeLowCurve  = new AnimationCurve();
     public AnimationCurve  AdvertSpawnTimeHighCurve  = new AnimationCurve();
 
     float _nextSpawnTime = 20;
-	
-	// Update is called once per frame
+
+    AudioSource _audioSource = null;
+
+    void Start() {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
 	void Update () {
-        UpdateTime();
+        var gs = GameState.Instance;
+        if (gs.IsStarted && !gs.IsPause) {
+            UpdateTime();
+        }
 	}
 
     void UpdateTime() {
@@ -47,6 +57,8 @@ public class AdvertSpawner : MonoSingleton<AdvertSpawner> {
         adv.transform.localPosition = Vector3.zero;
         adv.GetComponent<RectTransform>().anchoredPosition = advertPos;
         adv.transform.localScale = Vector3.one;
+        _audioSource.clip = WindowSounds[Random.Range(0, WindowSounds.Count)];
+        _audioSource.Play();
         
     }
 }
