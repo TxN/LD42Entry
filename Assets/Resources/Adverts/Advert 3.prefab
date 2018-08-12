@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224255524537534060}
   - component: {fileID: 114446783067969250}
   m_Layer: 5
-  m_Name: Advert 4
+  m_Name: Advert 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

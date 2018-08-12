@@ -7,6 +7,7 @@ public class GameState : MonoSingleton<GameState> {
     public Player         Player         = null;
     public MonsterSpawner MonsterSpawner = null;
     public BriefingWindow BriefingWindow = null;
+    public EndWindow      EndWindow      = null;
     public FadeScreen     Fader          = null;
 
 
@@ -28,6 +29,7 @@ public class GameState : MonoSingleton<GameState> {
     }
 
     void Start() {
+        UnityEngine.Cursor.visible = false;
         BriefingWindow.gameObject.SetActive(true);
         EventManager.Subscribe<Event_Game_Over>(this, OnGameOver);
     }
@@ -54,6 +56,12 @@ public class GameState : MonoSingleton<GameState> {
 
     void OnGameOver(Event_Game_Over e) {
         Fader.FadeBlack(1);
+        Invoke("ShowEndWindow", 1.2f);
+    }
+
+    void ShowEndWindow() {
+        EndWindow.transform.SetAsLastSibling();
+        EndWindow.gameObject.SetActive(true);
     }
 
 
