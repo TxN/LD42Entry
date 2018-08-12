@@ -117,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4047394529610502}
   - component: {fileID: 212546396922975842}
+  - component: {fileID: 114369220125545936}
   m_Layer: 0
   m_Name: Grahics
   m_TagString: Untagged
@@ -315,6 +316,23 @@ MonoBehaviour:
   Explosion: {fileID: 1384704927826418}
   MoveDirection: {x: 0, y: 0, z: -1}
   ZOffset: 1.5
+--- !u!114 &114369220125545936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1702017485644410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfa13e7c40974d44284c02d08583192b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: 6bcd897d01d3a1b4b83bca75c6d0074b, type: 3}
+  - {fileID: 21300000, guid: 28c3851ccbe395546b84d55b44d31aa8, type: 3}
+  Delays:
+  - 0.1
+  - 0.1
 --- !u!212 &212007672482598452
 SpriteRenderer:
   m_ObjectHideFlags: 1
