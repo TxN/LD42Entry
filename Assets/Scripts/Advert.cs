@@ -29,4 +29,8 @@ public class Advert : MonoBehaviour {
             AdvertSpawner.Instance.Spawn(); 
         } 
     }
+
+    public void ClickButton() {
+        AdvertSpawner.Instance.Spawn();
+    }
 }

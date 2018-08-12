@@ -33,11 +33,12 @@ public class AdvertSpawner : MonoSingleton<AdvertSpawner> {
     public void Spawn() { 
         int advertToSpawnIndex = 0;
 
-        if ( CurrentAdvertPrefab < AdvertsPrefabs.Count ) {
+        if ( CurrentAdvertPrefab <= AdvertsPrefabs.Count ) {
             advertToSpawnIndex = CurrentAdvertPrefab - 1; 
             CurrentAdvertPrefab++;
         } else {
             advertToSpawnIndex = Random.Range(0, AdvertsPrefabs.Count - 1); 
+            //advertToSpawnIndex = Random.Range(0, AdvertsPrefabs.Count); 
         }
 
         GameObject advert = AdvertsPrefabs[advertToSpawnIndex];
