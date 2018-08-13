@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using EventSys;
 
 public enum EnemyType {
@@ -10,7 +8,7 @@ public enum EnemyType {
     Large
 }
 
-public class Enemy : MonoBehaviour {
+public sealed class Enemy : MonoBehaviour {
     public SpriteRenderer SR           = null;
     public EnemyType      EnemyType    = EnemyType.Default;
     public int            Health       = 100;
@@ -50,6 +48,9 @@ public class Enemy : MonoBehaviour {
     }
 
     void Die() {
+		if ( _isDead ) {
+			return;
+		}
         _isDead = true;
         SR.enabled = false;
         Explosion.SetActive(true);
@@ -57,4 +58,8 @@ public class Enemy : MonoBehaviour {
         timedDestroy.Activate(DESTROY_TIME);
         EventManager.Fire<Event_Enemy_Killed>(new Event_Enemy_Killed());
     }
+
+	public void DelayedDie(float delay) {
+		Invoke("Die", delay);
+	}
 }

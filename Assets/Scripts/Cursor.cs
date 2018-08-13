@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Cursor : MonoBehaviour {
+public sealed class Cursor : MonoBehaviour {
 	public Camera        Camera     = null;
 	public RectTransform MainCanvas = null;
 

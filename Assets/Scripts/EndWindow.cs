@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class EndWindow : MonoBehaviour {
+public sealed class EndWindow : MonoBehaviour {
     public Button CloseButton = null;
 
     void Start() {

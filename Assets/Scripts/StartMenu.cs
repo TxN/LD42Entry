@@ -2,10 +2,10 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class StartMenu : MonoBehaviour {
-	public Button StartButton = null;
-    public Button SoundButton = null;
-    public Sprite SoundOnSprite = null;
+public sealed class StartMenu : MonoBehaviour {
+	public Button StartButton    = null;
+    public Button SoundButton    = null;
+    public Sprite SoundOnSprite  = null;
     public Sprite SoundOffSprite = null;
 
     bool _soundOn = false;

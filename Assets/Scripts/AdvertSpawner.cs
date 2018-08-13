@@ -1,33 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using EventSys;
 
-public class AdvertSpawner : MonoSingleton<AdvertSpawner> {
+public sealed class AdvertSpawner : MonoSingleton<AdvertSpawner> {
+	public List<GameObject> AdvertsPrefabs            = new List<GameObject>();
+    public List<AudioClip>  WindowSounds              = new List<AudioClip>(); 
+    public AnimationCurve   AdvertSpawnTimeLowCurve   = new AnimationCurve();
+    public AnimationCurve   AdvertSpawnTimeHighCurve  = new AnimationCurve();
 
-    public List<GameObject> AdvertsPrefabs;
+    AudioSource _audioSource         = null;
+	Canvas      _thisCanvas          = null;
+	float       _nextSpawnTime       = 20;
+	int         _currentAdvertPrefab = 1;
+	bool        _enabled             = true;
 
-    public List<AudioClip> WindowSounds = new List<AudioClip>();
-
-    int CurrentAdvertPrefab = 1;
-    public AnimationCurve  AdvertSpawnTimeLowCurve  = new AnimationCurve();
-    public AnimationCurve  AdvertSpawnTimeHighCurve  = new AnimationCurve();
-
-    float _nextSpawnTime = 20;
-
-    AudioSource _audioSource = null;
-
-    void Start() {
+	void Start() {
         _audioSource = GetComponent<AudioSource>();
-    }
+		_thisCanvas = gameObject.GetComponent<Canvas>();
+		EventManager.Subscribe<Event_Game_Win>(this, OnGameWin);
+	}
 
 	void Update () {
         var gs = GameState.Instance;
-        if (gs.IsStarted && !gs.IsPause) {
+        if (gs.IsStarted && !gs.IsPause && _enabled) {
             UpdateTime();
         }
 	}
 
-    void UpdateTime() {
+	void OnDestroy() {
+		EventManager.Unsubscribe<Event_Game_Win>(OnGameWin);
+	}
+
+	void UpdateTime() {
         var time = GameState.Instance.GameTime;
         if ( time > _nextSpawnTime ) {
             Spawn(); 
@@ -38,16 +42,17 @@ public class AdvertSpawner : MonoSingleton<AdvertSpawner> {
     public void Spawn() { 
         int advertToSpawnIndex = 0;
 
-        if ( CurrentAdvertPrefab <= AdvertsPrefabs.Count ) {
-            advertToSpawnIndex = CurrentAdvertPrefab - 1; 
-            CurrentAdvertPrefab++;
+        if ( _currentAdvertPrefab <= AdvertsPrefabs.Count ) {
+            advertToSpawnIndex = _currentAdvertPrefab - 1; 
+            _currentAdvertPrefab++;
         } else {
             advertToSpawnIndex = Random.Range(0, AdvertsPrefabs.Count - 1); 
         }
 
         GameObject advert = AdvertsPrefabs[advertToSpawnIndex];
-        RectTransform canvas = this.gameObject.GetComponent<Canvas>().GetComponent<RectTransform>();
-        Transform canvasParent = this.gameObject.GetComponent<Canvas>().GetComponent<Transform>();
+	
+		RectTransform canvas       = _thisCanvas.GetComponent<RectTransform>();
+        Transform     canvasParent = _thisCanvas.transform;
         Vector2 advertPos = new Vector2(
             Random.Range(0f, canvas.sizeDelta.x - advert.GetComponent<RectTransform>().sizeDelta.x),
             Random.Range(0f, canvas.sizeDelta.y - advert.GetComponent<RectTransform>().sizeDelta.y)
@@ -57,8 +62,12 @@ public class AdvertSpawner : MonoSingleton<AdvertSpawner> {
         adv.transform.localPosition = Vector3.zero;
         adv.GetComponent<RectTransform>().anchoredPosition = advertPos;
         adv.transform.localScale = Vector3.one;
+
         _audioSource.clip = WindowSounds[Random.Range(0, WindowSounds.Count)];
         _audioSource.Play();
-        
     }
+
+	void OnGameWin(Event_Game_Win e) {
+		_enabled = false;
+	}
 }

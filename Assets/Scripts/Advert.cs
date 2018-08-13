@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using EventSys;
 
-public class Advert : MonoBehaviour { 
+public sealed class Advert : MonoBehaviour { 
 
     public Button CloseButton;
 
@@ -18,6 +18,10 @@ public class Advert : MonoBehaviour {
 		transform.localScale = Vector3.zero;
 		_seq.Append(transform.DOScale(curScale, 0.2f));
 		_seq.Append(transform.DOPunchScale(new Vector3(0.05f, 0.05f, 0), 0.25f));
+	}
+
+	public void DelayedClose(float time) {
+		Invoke("Close", time);
 	}
 	
     void Close() {

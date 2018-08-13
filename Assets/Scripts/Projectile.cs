@@ -2,7 +2,7 @@
 using DG.Tweening;
 
 
-public class Projectile : MonoBehaviour {
+public sealed class Projectile : MonoBehaviour {
     public int        Damage        = 10;
     public float      Speed         = 10f;
     public Vector3    MoveDirection = new Vector3(0, 0, 1);
@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour {
        
         _seq = TweenHelper.ReplaceSequence(_seq);
         transform.localScale = Vector3.zero;
-        _seq.Append(transform.DOScale(_initScale,0.35f));
+        _seq.Append(transform.DOScale(_initScale,0.3f));
         _seq.AppendCallback(() => {_isReady = true;});
     }
 
@@ -60,7 +60,7 @@ public class Projectile : MonoBehaviour {
         var destr = Explosion.AddComponent<TimedDestroy>();
         destr.Activate(1.5f);
         Explosion.gameObject.SetActive(true);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     public bool Fire() {

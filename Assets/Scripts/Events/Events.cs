@@ -6,6 +6,9 @@ namespace EventSys {
     public struct Event_Game_Over {
     }
 
+	public struct Event_Game_Win {
+	}
+
 	public struct Event_Paused {
 	}
 

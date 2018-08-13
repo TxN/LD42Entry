@@ -451,7 +451,7 @@ MonoBehaviour:
   MoveSpeed: 2.5
   Explosion: {fileID: 1315149594518228}
   MoveDirection: {x: 0, y: 0, z: -1}
-  ZOffset: -1
+  ZOffset: 0
 --- !u!212 &212066759663840372
 SpriteRenderer:
   m_ObjectHideFlags: 1

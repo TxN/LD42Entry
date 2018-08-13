@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using EventSys;
 
-public class Player : MonoBehaviour {
+public sealed class Player : MonoBehaviour {
     public int        Health               = 100;
     public GameObject ProjectilePrefab     = null;
     public Transform  ProjectileSpawnPoint = null;
@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 
     int  _maxHealth = 0;
     bool _isDead    = false;
+	bool _enabled   = true;
 
     public float MinYAngle = -10;
     public float MaxYAngle = 10;
@@ -24,17 +25,18 @@ public class Player : MonoBehaviour {
     Projectile _currentProjectile = null;
     Vector3    _handImgInitPos    = Vector3.zero;
 
-	const int ADVERT_CLOSE_HP_BOOST = 5;
+	const int ADVERT_CLOSE_HP_BOOST = 3;
 
     void Start() {
         _maxHealth = Health;
         _handImgInitPos = HandImg.position;
 		EventManager.Subscribe<Event_UI_Window_Closed>(this, OnWindowClosed);
+		EventManager.Subscribe<Event_Game_Win>(this, OnGameWin);
     }
 
     void Update() {
         var gs = GameState.Instance;
-        if (gs.IsStarted && !_isDead) {
+        if (gs.IsStarted && !_isDead && _enabled) {
             float xHandOffset = Input.mousePosition.x;
             float yHandOffset = Input.mousePosition.y;
             xHandOffset = xHandOffset.Map(0, Screen.width, MinXHandOffset, MaxXHandOffset);
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour {
 
 	private void OnDestroy() {
 		EventManager.Unsubscribe<Event_UI_Window_Closed>(OnWindowClosed);
+		EventManager.Unsubscribe<Event_Game_Win>(OnGameWin);
 	}
 
 	void Die() {
@@ -92,5 +95,9 @@ public class Player : MonoBehaviour {
 		if (e.IsAdvert && !_isDead) {
 			Health = Mathf.Clamp(Health + ADVERT_CLOSE_HP_BOOST, 0, _maxHealth);
 		}
+	}
+
+	void OnGameWin(Event_Game_Win e) {
+		_enabled = false;
 	}
 }

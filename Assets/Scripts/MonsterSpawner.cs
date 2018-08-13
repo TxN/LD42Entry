@@ -2,7 +2,7 @@
 using UnityEngine;
 using EventSys;
 
-public class MonsterSpawner : MonoBehaviour {
+public sealed class MonsterSpawner : MonoBehaviour {
     public List<Transform> SpawnPoints = new List<Transform>();
     public List<Enemy>     EnemyFabs   = new List<Enemy>();
     public AnimationCurve  SpawnTimeCurve  = new AnimationCurve();
@@ -19,13 +19,15 @@ public class MonsterSpawner : MonoBehaviour {
     void Start() {
         EventManager.Subscribe<Event_Game_Started>(this, OnGameStarted);
         EventManager.Subscribe<Event_Game_Over>(this, OnGameOver);
-        _doorSound = GetComponent<AudioSource>();
+		EventManager.Subscribe<Event_Game_Win>(this, OnGameWin);
+		_doorSound = GetComponent<AudioSource>();
     }
 
     void OnDestroy() {
         EventManager.Unsubscribe<Event_Game_Started>(OnGameStarted);
         EventManager.Unsubscribe<Event_Game_Over>(OnGameOver);
-    }
+		EventManager.Unsubscribe<Event_Game_Win>(OnGameWin);
+	}
 
     void Update() {
         var gm = GameState.Instance;
@@ -56,7 +58,7 @@ public class MonsterSpawner : MonoBehaviour {
         }
 
         _timeToSpawn = SpawnTimeCurve.Evaluate(time);
-        _spawnCount = Random.Range(1, Mathf.CeilToInt(SpawnCountCurve.Evaluate(time)));
+        _spawnCount = Random.Range(1, Mathf.RoundToInt(SpawnCountCurve.Evaluate(time)));
         DoorClose();
 
     }
@@ -84,6 +86,10 @@ public class MonsterSpawner : MonoBehaviour {
     void OnGameOver(Event_Game_Over e) {
         _enabled = false;
     }
+
+	void OnGameWin(Event_Game_Win e) {
+		_enabled = false;
+	}
 
 
 }

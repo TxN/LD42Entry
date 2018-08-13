@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar : MonoBehaviour {
+public sealed class HealthBar : MonoBehaviour {
 
     Image _img = null;
 
