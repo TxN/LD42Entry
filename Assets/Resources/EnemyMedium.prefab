@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 4207878373669618}
   - component: {fileID: 212749381654520108}
   - component: {fileID: 114297950318965872}
+  - component: {fileID: 95654040752876264}
   m_Layer: 0
   m_Name: Grahics
   m_TagString: Untagged
@@ -278,7 +279,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.53, y: 2.27, z: 1}
+  m_Size: {x: 3.13, y: 3.04, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82148600941576664
 AudioSource:
@@ -385,6 +386,24 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 15e758bb18aad9c438161ec381f54da8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &95654040752876264
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1974816803394396}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fc879f0180a543a4f91eb5ef1dbf09f6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
