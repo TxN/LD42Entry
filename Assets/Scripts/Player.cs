@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using EventSys;
 
 public class Player : MonoBehaviour {
@@ -26,9 +24,12 @@ public class Player : MonoBehaviour {
     Projectile _currentProjectile = null;
     Vector3    _handImgInitPos    = Vector3.zero;
 
+	const int ADVERT_CLOSE_HP_BOOST = 5;
+
     void Start() {
         _maxHealth = Health;
         _handImgInitPos = HandImg.position;
+		EventManager.Subscribe<Event_UI_Window_Closed>(this, OnWindowClosed);
     }
 
     void Update() {
@@ -61,7 +62,11 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void Die() {
+	private void OnDestroy() {
+		EventManager.Unsubscribe<Event_UI_Window_Closed>(OnWindowClosed);
+	}
+
+	void Die() {
 		_isDead = true;
         EventManager.Fire<Event_Game_Over>(new Event_Game_Over());
     }
@@ -82,4 +87,10 @@ public class Player : MonoBehaviour {
             return (float)Health / _maxHealth;
         }
     }
+
+	void OnWindowClosed(Event_UI_Window_Closed e) {
+		if (e.IsAdvert && !_isDead) {
+			Health = Mathf.Clamp(Health + ADVERT_CLOSE_HP_BOOST, 0, _maxHealth);
+		}
+	}
 }

@@ -13,7 +13,7 @@ namespace EventSys {
     }
 
     public struct Event_UI_Window_Closed {
-        
+		public bool IsAdvert;
     }
 
 
