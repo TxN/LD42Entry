@@ -7,10 +7,11 @@ public class Player : MonoBehaviour {
     public int        Health               = 100;
     public GameObject ProjectilePrefab     = null;
     public Transform  ProjectileSpawnPoint = null;
-    public Transform  HandImg = null;
-    public AudioSource ShootSound = null;
-    int _maxHealth = 0;
-    bool _isDead = false;
+    public Transform  HandImg              = null;
+    public AudioSource ShootSound          = null;
+
+    int  _maxHealth = 0;
+    bool _isDead    = false;
 
     public float MinYAngle = -10;
     public float MaxYAngle = 10;
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour {
     public float MaxYHandOffset = 30;
     
     Projectile _currentProjectile = null;
-    Vector3 _handImgInitPos = Vector3.zero;
+    Vector3    _handImgInitPos    = Vector3.zero;
 
     void Start() {
         _maxHealth = Health;

@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
 public class Cursor : MonoBehaviour {
-    RectTransform _trans = null;
-    public Camera Camera = null;
-    public RectTransform MainCanvas = null;
+	public Camera        Camera     = null;
+	public RectTransform MainCanvas = null;
+
+	RectTransform _trans = null;
+
     void Start() {
         _trans = GetComponent<RectTransform>();
     }
@@ -12,8 +14,6 @@ public class Cursor : MonoBehaviour {
         var pos = Input.mousePosition;
         Vector2 canvPoint = Vector2.zero;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(MainCanvas, pos, Camera, out canvPoint);
-        var width = Screen.width / 2;
-        var height = Screen.height / 2;
         _trans.anchoredPosition = canvPoint;
 	}
 }
