@@ -12,11 +12,16 @@ public sealed class StartMenu : MonoBehaviour {
     bool _soundOn = false;
 
 	void Start () {
+		UnityEngine.Cursor.visible = true;
+
         _soundOn = AudioListener.volume > 0.05f;
         SoundButton.image.sprite = _soundOn ? SoundOnSprite : SoundOffSprite;
 		StartButton.onClick.AddListener(LoadLevel);
         SoundButton.onClick.AddListener(OnClickSoundToggle);
 		ExitButton.onClick.AddListener(OnClickExit);
+		if ( Application.platform == RuntimePlatform.WebGLPlayer ) {
+			ExitButton.gameObject.SetActive(false);
+		}
 	}
 
 	void LoadLevel() {
