@@ -14,6 +14,7 @@ public sealed class GameState : MonoSingleton<GameState> {
     float _gameTime  = 0;
     bool  _isStarted = false;
 	bool  _isWin     = false;
+	bool  _isFail    = false;
 
 	const float WIN_TIME = 200;
     
@@ -52,16 +53,16 @@ public sealed class GameState : MonoSingleton<GameState> {
     void Update() {
         if (_isStarted && !IsPause) {
             _gameTime += Time.deltaTime;
-			if ( _gameTime > WIN_TIME && !_isWin) {
+			if (!_isFail && (_gameTime > WIN_TIME) && !_isWin) {
 				WinGame();
 			}
-			Debug.Log(GameTime);
         }
     }
 
     void OnGameOver(Event_Game_Over e) {
         Fader.FadeBlack(1);
         Invoke("ShowEndWindow", 1.2f);
+		_isFail = true;
     }
 
     void ShowEndWindow() {

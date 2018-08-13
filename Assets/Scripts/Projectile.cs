@@ -19,7 +19,7 @@ public sealed class Projectile : MonoBehaviour {
        
         _seq = TweenHelper.ReplaceSequence(_seq);
         transform.localScale = Vector3.zero;
-        _seq.Append(transform.DOScale(_initScale,0.3f));
+        _seq.Append(transform.DOScale(_initScale,0.29f));
         _seq.AppendCallback(() => {_isReady = true;});
     }
 
