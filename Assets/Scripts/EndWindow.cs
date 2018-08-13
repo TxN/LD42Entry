@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public sealed class EndWindow : MonoBehaviour {
     public Button CloseButton = null;
@@ -9,6 +10,6 @@ public sealed class EndWindow : MonoBehaviour {
     }
 
     void OnButtonClick() {
-        Application.Quit();
-    }
+		SceneManager.LoadScene("TitleScreen");
+	}
 }

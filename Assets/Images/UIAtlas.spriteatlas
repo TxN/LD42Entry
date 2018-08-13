@@ -41,9 +41,16 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 89df4b5440600254798aeccc584a7f13, type: 3}
   - {fileID: 21300000, guid: 149c32b43fcfff8468d61d867f17bf3f, type: 3}
   - {fileID: 21300000, guid: da38a995ce955794cb9dc5ba4d6d5550, type: 3}
+  - {fileID: 21300000, guid: be3e75d52d8cf7848b4b06c07681512a, type: 3}
+  - {fileID: 21300000, guid: 1d9b945800fe01d4a902f087af6c98ff, type: 3}
+  - {fileID: 21300000, guid: 934c9e88f632fd84187a9d4754dbbeb0, type: 3}
   - {fileID: 21300000, guid: cae9c7b88b6f13c4b9c6f5726f8502f5, type: 3}
+  - {fileID: 21300000, guid: 0cf2a009edb1cce46aa958469b8ec3e7, type: 3}
   - {fileID: 21300000, guid: ac880ec95c35b5d4197355fae6d4ba37, type: 3}
   - {fileID: 21300000, guid: 4eefbd1a1d8d2fb438aa9d7d1521b159, type: 3}
+  - {fileID: 21300000, guid: 6d621c2a1e311124fb163a58c727c790, type: 3}
+  - {fileID: 21300000, guid: 457059fac37cacd47b064f051661dce4, type: 3}
+  - {fileID: 21300000, guid: c140badc2862e774190f1d35b62c9d9d, type: 3}
   - {fileID: 21300000, guid: db98fb4d07daedf41b26faf64641b8c6, type: 3}
   - {fileID: 21300000, guid: 494853eff0aaa9a4aa963933ca4a7d4b, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -53,9 +60,16 @@ SpriteAtlas:
   - hp1
   - hp2
   - hp3
+  - 3
+  - 4_1
+  - 1
   - close_window
+  - 2
   - see
   - close
+  - kurs
+  - 4
+  - 5
   - quest_window
   - moon
   m_Tag: UIAtlas

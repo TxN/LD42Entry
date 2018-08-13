@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public sealed class StartMenu : MonoBehaviour {
 	public Button StartButton    = null;
     public Button SoundButton    = null;
+	public Button ExitButton     = null;
     public Sprite SoundOnSprite  = null;
     public Sprite SoundOffSprite = null;
 
@@ -15,6 +16,7 @@ public sealed class StartMenu : MonoBehaviour {
         SoundButton.image.sprite = _soundOn ? SoundOnSprite : SoundOffSprite;
 		StartButton.onClick.AddListener(LoadLevel);
         SoundButton.onClick.AddListener(OnClickSoundToggle);
+		ExitButton.onClick.AddListener(OnClickExit);
 	}
 
 	void LoadLevel() {
@@ -26,5 +28,8 @@ public sealed class StartMenu : MonoBehaviour {
         SoundButton.image.sprite = _soundOn ? SoundOnSprite : SoundOffSprite;
 		AudioListener.volume = _soundOn ? 1f : 0f;
 	}
-	
+
+	void OnClickExit() {
+		Application.Quit();
+	}
 }

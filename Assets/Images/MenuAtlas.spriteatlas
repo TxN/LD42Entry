@@ -35,12 +35,14 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 343015607cba12b4d8541cc70b27b1d9, type: 3}
   - {fileID: 21300000, guid: 599290d430ab63746b53ac37cd121df3, type: 3}
+  - {fileID: 21300000, guid: ce8cdee5339580f40a603f858f02230c, type: 3}
   - {fileID: 21300000, guid: 7e654ba750ab4f049a67d8e98103c71e, type: 3}
   - {fileID: 21300000, guid: 8dddd8ec175cfad43a15a191cdd36ace, type: 3}
   - {fileID: 21300000, guid: 26b3b4bd06a44524598f9a50efdc0870, type: 3}
   m_PackedSpriteNamesToIndex:
   - on
   - off
+  - exit
   - shootan
   - back
   - start
