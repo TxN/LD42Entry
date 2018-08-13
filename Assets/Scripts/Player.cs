@@ -25,7 +25,7 @@ public sealed class Player : MonoBehaviour {
     Projectile _currentProjectile = null;
     Vector3    _handImgInitPos    = Vector3.zero;
 
-	const int ADVERT_CLOSE_HP_BOOST = 3;
+	const int ADVERT_CLOSE_HP_BOOST = 4;
 
     void Start() {
         _maxHealth = Health;

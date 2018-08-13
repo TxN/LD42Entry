@@ -343,8 +343,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Congratulations RC32,  your AD-Blocker was successfully reinstalled. You
-    may evacuate to the moon now.
+  m_Text: RC32, your AD-defense has been successfully restored. You managed to defend
+    the port and protect the moon from AD-contamination. Your extraordinary abilities
+    gave humanity a chance to survive.
 --- !u!222 &222543798971710356
 CanvasRenderer:
   m_ObjectHideFlags: 1
