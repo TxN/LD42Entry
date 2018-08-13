@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using DG.Tweening;
 
 
@@ -21,8 +19,7 @@ public class Projectile : MonoBehaviour {
        
         _seq = TweenHelper.ReplaceSequence(_seq);
         transform.localScale = Vector3.zero;
-        _seq.Append(transform.DOScale(_initScale,0.3f));
-        _seq.Append(transform.DOPunchScale(new Vector3(0.1f,0.1f,0.1f),0.1f));
+        _seq.Append(transform.DOScale(_initScale,0.35f));
         _seq.AppendCallback(() => {_isReady = true;});
     }
 

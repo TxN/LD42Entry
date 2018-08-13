@@ -426,7 +426,7 @@ MonoBehaviour:
   SR: {fileID: 212546396922975842}
   EnemyType: 1
   Health: 20
-  AttackDamage: 10
+  AttackDamage: 5
   MoveSpeed: 4
   Explosion: {fileID: 1384704927826418}
   MoveDirection: {x: 0, y: 0, z: -1}
